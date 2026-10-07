@@ -1,0 +1,17 @@
+#GSAS-II instrument parameter file; do not add/delete items!
+Type:PXC
+Lam:1.5403
+Zero:0.049948848393250284
+Polariz.:0.5
+U:418.99266761626023
+V:-227.1108015369226
+W:48.813562400057585
+X:0.0
+Y:15.737032230664841
+Z:0.0
+SH/L:0.027292127957733888
+Azimuth:0.0
+Source:CuKa
+Bank:1
+Diff-type:Debye-Scherrer
+Gonio. radius:200.0

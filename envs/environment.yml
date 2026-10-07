@@ -1,0 +1,45 @@
+name: ariadnex
+channels:
+  - briantoby
+  - conda-forge
+dependencies:
+  - python=3.11.10
+  - gsas2pkg=5.1.0
+  # Numerical builds used by the paper examples (Linux x86_64).
+  - numpy=1.26.4=py311h64a7726_0
+  - scipy=1.14.1=py311he1f765f_0
+  - libblas=3.9.0=24_linux64_openblas
+  - libcblas=3.9.0=24_linux64_openblas
+  - liblapack=3.9.0=24_linux64_openblas
+  - libopenblas=0.3.27=pthreads_hac2b453_1
+  - pandas=2.2.3
+  - scikit-learn=1.8.0
+  - matplotlib=3.9.2
+  - pillow=10.4.0
+  - h5py=3.11.0
+  - pyyaml=6.0.2
+  - pip
+  - pip:
+      - antlr4-python3-runtime==4.9.3
+      - ase==3.28.0
+      - csaps==1.3.3
+      - gurobipy==11.0.3
+      - joblib==1.4.2
+      - monty==2024.10.21
+      - networkx==3.4.2
+      - numba==0.65.0
+      - omegaconf==2.3.0
+      - openpyxl==3.1.5
+      - pandarallel==1.6.5
+      - pathos==0.3.5
+      - pot==0.9.5
+      - pybaselines==1.2.0
+      - pymatgen==2024.10.29
+      - pytest==9.1.1
+      - scikit-image==0.26.0
+      - seaborn==0.13.2
+      - smact==4.0.0
+      - statsmodels==0.14.4
+      - tabulate==0.9.0
+      - torch==2.0.1
+      - tqdm==4.66.5

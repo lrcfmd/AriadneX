@@ -1,0 +1,192 @@
+$schema: https://json-schema.org/draft/2020-12/schema
+$id: https://github.com/lrcfmd/AriadneX/schemas/library_manifest.schema.yaml
+title: Built library manifest
+description: Row contract emitted by library construction and clustering.
+type: object
+additionalProperties: false
+required:
+  - phase_id
+  - source_id
+  - source_path
+  - gsasii_cif_path
+  - conversion_status
+  - conversion_reason
+  - parse_status
+  - audit_creation_date
+  - formula
+  - source_formula
+  - elements
+  - space_group
+  - source_space_group
+  - cell_volume
+  - n_sites
+  - accepted
+  - smact_status
+  - rejection_stage
+  - rejection_reason
+  - dedup_status
+  - dedup_reason
+  - dedup_canonical_source_id
+  - dedup_group_size
+  - duplicate_group
+  - simulation_status
+  - pattern_path
+  - basis_simulated_pattern_path
+  - simulated_pattern_path
+  - cluster_eligible
+  - cluster_label
+  - representative
+properties:
+  phase_id: {type: string, minLength: 1}
+  source_id: {type: [string, 'null']}
+  source_path: {type: string, minLength: 1}
+  gsasii_cif_path: {type: [string, 'null']}
+  conversion_status: {type: [string, 'null']}
+  conversion_reason: {type: [string, 'null']}
+  audit_creation_date: {type: [string, 'null']}
+  formula: {type: [string, 'null']}
+  label: {type: [string, 'null']}
+  source_formula_sum: {type: [string, 'null']}
+  source_accession: {type: [string, 'null']}
+  source_block: {type: [string, 'null']}
+  space_group_number: {type: [integer, 'null'], minimum: 1, maximum: 230}
+  source_space_group_number: {type: [integer, 'null'], minimum: 1, maximum: 230}
+  source_formula: {type: [string, 'null']}
+  elements: {type: [string, 'null']}
+  space_group: {type: [string, 'null']}
+  source_space_group: {type: [string, 'null']}
+  cell_volume: {type: [number, 'null'], minimum: 0}
+  n_sites: {type: [integer, 'null'], minimum: 0}
+  parse_status: {type: string}
+  accepted: {type: boolean}
+  smact_status: {type: [string, 'null']}
+  rejection_stage: {type: [string, 'null']}
+  rejection_reason: {type: [string, 'null']}
+  dedup_status: {type: [string, 'null']}
+  dedup_reason: {type: [string, 'null']}
+  dedup_canonical_source_id: {type: [string, 'null']}
+  dedup_group_size: {type: [integer, 'null'], minimum: 0}
+  duplicate_group: {type: [string, 'null']}
+  representative: {type: boolean}
+  simulation_status: {type: [string, 'null']}
+  pattern_path: {type: [string, 'null']}
+  basis_simulated_pattern_path: {type: [string, 'null']}
+  simulated_pattern_path: {type: [string, 'null']}
+  cluster_eligible: {type: boolean}
+  cluster_label: {type: [integer, 'null'], minimum: 0}
+x-csv:
+  delimiter: ','
+  header: true
+  columns:
+    - name: phase_id
+      type: string
+      required: true
+      unique: true
+    - name: source_id
+      type: string
+      required: false
+    - name: source_path
+      type: path
+      required: true
+    - name: gsasii_cif_path
+      type: path
+      required: false
+    - name: conversion_status
+      type: string
+      required: true
+    - name: conversion_reason
+      type: string
+      required: true
+    - name: parse_status
+      type: string
+      required: true
+    - name: audit_creation_date
+      type: string
+      required: false
+    - name: formula
+      type: string
+      required: false
+    - name: source_formula
+      type: string
+      required: false
+    - name: elements
+      type: string
+      required: false
+    - name: space_group
+      type: string
+      required: false
+    - name: source_space_group
+      type: string
+      required: false
+    - name: cell_volume
+      type: float
+      required: false
+    - name: n_sites
+      type: integer
+      required: false
+    - name: accepted
+      type: boolean
+      required: true
+    - name: smact_status
+      type: string
+      required: false
+    - name: rejection_stage
+      type: string
+      required: true
+    - name: rejection_reason
+      type: string
+      required: true
+    - name: dedup_status
+      type: string
+      required: false
+    - name: dedup_reason
+      type: string
+      required: false
+    - name: dedup_canonical_source_id
+      type: string
+      required: false
+    - name: dedup_group_size
+      type: integer
+      required: false
+    - name: duplicate_group
+      type: string
+      required: false
+    - name: simulation_status
+      type: string
+      required: false
+    - name: pattern_path
+      type: path
+      required: false
+    - name: basis_simulated_pattern_path
+      type: path
+      required: false
+    - name: simulated_pattern_path
+      type: path
+      required: false
+    - name: cluster_eligible
+      type: boolean
+      required: true
+    - name: cluster_label
+      type: integer
+      required: false
+    - name: representative
+      type: boolean
+      required: true
+    - name: label
+      type: string
+      required: false
+    - name: source_formula_sum
+      type: string
+      required: false
+    - name: source_accession
+      type: string
+      required: false
+    - name: source_block
+      type: string
+      required: false
+    - name: space_group_number
+      type: integer
+      required: false
+    - name: source_space_group_number
+      type: integer
+      required: false

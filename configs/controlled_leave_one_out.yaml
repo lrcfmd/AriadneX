@@ -1,0 +1,104 @@
+schema_version: 1
+
+project:
+  name: controlled_leave_one_out
+  output_root: ../runs
+
+inputs:
+  phase_manifest: ../data/local_examples/controlled_leave_one_out/raw_phases.csv
+  mixtures: ../data/controlled_leave_one_out/samples.csv
+  instrument: ../data/controlled_leave_one_out/experimental.instprm
+  ground_truth: ../data/controlled_leave_one_out/ground_truth.csv
+
+model:
+  checkpoint: ../models/last.ckpt
+
+library:
+  profile: controlled_leave_one_out
+  # These four curated ambient-reference phases are the complete LOO basis.
+  # Rutile's source CIF records a 3 GPa measurement; rejecting it here would
+  # silently turn the four-phase experiment into a three-phase experiment.
+  filter:
+    ambient_condition_filter_enabled: false
+  simulation:
+    # Simulation and checkpoint embedding share the full training grid.
+    theta_min: 5.0
+    theta_max: 90.0
+    gridpoints: 4096
+  basis_simulation:
+    # Selected basis files are regenerated on the controlled PXRD window.
+    theta_min: 10.0
+    theta_max: 37.0
+    gridpoints: 4096
+  embedding:
+    theta_min: 5.0
+    theta_max: 90.0
+    gridpoints: 4096
+    feature_space: raw_cls
+    distance: cosine
+    normalization: l2
+    batch_size: 64
+  clustering:
+    selection: fixed_count
+    target_clusters: 4
+
+mixtures:
+  profile: controlled_leave_one_out
+
+unmix:
+  profile: controlled_leave_one_out
+  allow_anomaly: true
+  element_prior:
+    enabled: false
+  preprocessing:
+    background:
+      basis: psalsa
+      mixture: none
+    theta_min: 10.0
+    theta_max: 37.0
+    gridpoints: 0
+    signature_points: 256
+    signature_reduce_mode: dp_sse
+    center: false
+    smooth: false
+    denoise:
+      basis: savgol
+      mixture: savgol
+      window: 7
+      polyorder: 2
+    signature_cleaning:
+      basis: none
+      mixture:
+        mode: adaptive_noise
+        keep_top_k: 16
+        min_components: 40
+        unsupported_strength_mult: 1.2
+        strong_quantile_low_snr: 0.85
+        strong_quantile_high_snr: 0.80
+  solver:
+    formulation: milp
+    phase_order_manifest: ../data/controlled_leave_one_out/basis_order.csv
+    max_base: 3
+    resolution: 0.005
+    beta: 2.5
+    soft_sparse_penalty: 0.125
+    missing_element_penalty: 0.0
+    width_prior_mode: inst_width_tau_v1
+    delta_tau: 1.5
+    delta_floor: 0.03
+    width_floor_abs: 0.045
+    width_budget_mode: global_avg
+    strict_solver: true
+    threads: 2
+    max_base_extra: 0
+
+experiment:
+  type: leave_one_out
+  holdouts: [A, B, C, D]
+
+reports:
+  profile: final_required_v1
+  phase_recovery: true
+  anomaly: true
+  reconstruction_sigma: auto
+  fingerprint_sigma: auto

@@ -1,0 +1,63 @@
+$schema: https://json-schema.org/draft/2020-12/schema
+$id: https://github.com/lrcfmd/AriadneX/schemas/samples.schema.yaml
+title: Experimental sample manifest
+description: >-
+  CSV contract for experimental PXRD inputs. Paths are relative to the
+  manifest unless an absolute path is explicitly supplied by a caller.
+type: object
+additionalProperties: false
+required: [sample_id, pattern_path]
+properties:
+  sample_id:
+    type: string
+    minLength: 1
+    description: Stable sample identifier used in all result tables.
+  pattern_path:
+    type: string
+    minLength: 1
+    description: Relative path to an ASC, XY, TXT, CSV, NPY or NPZ pattern.
+  composition:
+    type: [string, 'null']
+    description: Optional nominal composition used by an element prior.
+  nominal_composition:
+    type: [string, 'null']
+    description: >-
+      Accepted alias for composition in source sample manifests. The loader
+      maps this field to composition before preprocessing.
+  expected_gt_phases:
+    type: [string, 'null']
+    description: >-
+      Optional semicolon-separated ground-truth phase labels retained as
+      metadata; it is not passed to the solver as a prior.
+  label:
+    type: [string, 'null']
+    description: Optional human-readable sample label.
+  instrument:
+    type: [string, 'null']
+    description: Optional per-sample instrument override.
+x-csv:
+  delimiter: ','
+  header: true
+  columns:
+    - name: sample_id
+      type: string
+      required: true
+      unique: true
+    - name: pattern_path
+      type: path
+      required: true
+    - name: composition
+      type: string
+      required: false
+    - name: nominal_composition
+      type: string
+      required: false
+    - name: expected_gt_phases
+      type: string
+      required: false
+    - name: label
+      type: string
+      required: false
+    - name: instrument
+      type: path
+      required: false

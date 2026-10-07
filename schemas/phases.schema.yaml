@@ -1,0 +1,62 @@
+$schema: https://json-schema.org/draft/2020-12/schema
+$id: https://github.com/lrcfmd/AriadneX/schemas/phases.schema.yaml
+title: CIF phase manifest
+description: >-
+  CSV contract for CIF inputs. The source CIF is never deleted by filtering;
+  filter status and reasons are recorded in the generated library manifest.
+type: object
+additionalProperties: false
+required: [phase_id, cif_path]
+properties:
+  phase_id:
+    type: string
+    minLength: 1
+    description: Stable identity used by clustering, unmixing and truth data.
+  cif_path:
+    type: string
+    minLength: 1
+    description: Relative path to the raw CIF file.
+  label:
+    type: [string, 'null']
+    description: Optional display label, for example calcite or rutile.
+  formula:
+    type: [string, 'null']
+    description: Optional formula override; normally read from the CIF.
+  elements:
+    type: [string, 'null']
+    description: Optional element set encoded as a semicolon-separated string.
+  source_id:
+    type: [string, 'null']
+    description: Optional source-database identifier such as an ICSD number.
+  basis_pattern_path:
+    type: [string, 'null']
+    description: >-
+      Optional path to an already simulated basis pattern retained in a
+      staged/reference bundle.  The library stage writes its own simulated
+      and representative pattern paths to the generated manifest.
+x-csv:
+  delimiter: ','
+  header: true
+  columns:
+    - name: phase_id
+      type: string
+      required: true
+      unique: true
+    - name: cif_path
+      type: path
+      required: true
+    - name: label
+      type: string
+      required: false
+    - name: formula
+      type: string
+      required: false
+    - name: elements
+      type: string
+      required: false
+    - name: source_id
+      type: string
+      required: false
+    - name: basis_pattern_path
+      type: path
+      required: false

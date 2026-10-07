@@ -1,0 +1,60 @@
+$schema: https://json-schema.org/draft/2020-12/schema
+$id: https://github.com/lrcfmd/AriadneX/schemas/ground_truth.schema.yaml
+title: Sample phase ground truth
+description: >-
+  Long-format CSV contract for known phase amounts. A row with fraction zero
+  may be retained for provenance but is ignored by presence metrics. Fractions
+  use the unit declared by fraction_unit in each row.
+type: object
+additionalProperties: false
+required: [sample_id, phase_id, fraction]
+properties:
+  sample_id:
+    type: string
+    minLength: 1
+  phase_id:
+    type: string
+    minLength: 1
+  fraction:
+    type: number
+    minimum: 0
+  fraction_unit:
+    type: string
+    enum: [fraction, percent, wt_pct]
+    description: Unit for fraction. Include this field explicitly.
+  source_column:
+    type: [string, 'null']
+    description: Optional source-table column from which the value came.
+  source_row:
+    type: [integer, 'null']
+    minimum: 1
+  is_present:
+    type: [boolean, 'null']
+    description: Optional presence label; otherwise derived from the configured threshold.
+x-csv:
+  delimiter: ','
+  header: true
+  columns:
+    - name: sample_id
+      type: string
+      required: true
+    - name: phase_id
+      type: string
+      required: true
+    - name: fraction
+      type: float
+      required: true
+      minimum: 0
+    - name: fraction_unit
+      type: enum
+      required: false
+      values: [fraction, percent, wt_pct]
+    - name: source_column
+      type: string
+      required: false
+    - name: source_row
+      type: integer
+      required: false
+    - name: is_present
+      type: boolean
+      required: false

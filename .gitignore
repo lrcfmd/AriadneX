@@ -1,0 +1,38 @@
+# Python build products
+__pycache__/
+*.py[cod]
+*.so
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+coverage.xml
+htmlcov/
+dist/
+build/
+*.egg-info/
+
+# Local environments and editor state
+.venv/
+.conda/
+.idea/
+.vscode/
+*.swp
+envs/*.explicit.txt
+.DS_Store
+
+# User-provided data and large model assets
+data/
+models/*.ckpt
+models/*.pt
+models/*.pth
+models/*.safetensors
+
+# Workflow outputs and logs
+runs/
+logs/
+*.log
+
+# Temporary staging files
+*.tmp
+*.part

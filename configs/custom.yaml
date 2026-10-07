@@ -1,0 +1,20 @@
+schema_version: 1
+profile: custom
+
+project:
+  name: custom
+  output_root: ../runs
+
+# Paths are relative to this file. Change them if your files are elsewhere.
+inputs:
+  cifs: ../data/custom/cifs
+  mixtures: ../data/custom/patterns
+  instrument: ../data/custom/experimental.instprm
+
+model:
+  checkpoint: ../models/last.ckpt
+
+# Two-theta range in degrees; only measured points inside this range are fitted.
+analysis:
+  theta_min: 15.0
+  theta_max: 75.0
