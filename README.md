@@ -19,7 +19,6 @@ analysis, or [your own data](#your-own-data) for a general analysis.
 Use Linux x86_64 with [Git](https://git-scm.com/downloads/linux),
 [Conda](https://docs.conda.io/projects/conda/en/stable/user-guide/install/linux.html),
 and the [GitHub CLI](https://github.com/cli/cli/blob/trunk/docs/install_linux.md).
-Use a GitHub account with access to this repository and its releases.
 
 ```bash
 gh auth login
