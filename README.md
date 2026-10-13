@@ -160,6 +160,15 @@ Then prepare your CIFs again and rerun the chosen example with `--force`, for ex
 
 For command options, run `./workflow --help`.
 
+## Citation
+
+If you use AriadneX, please cite:
+
+Z. Yang, C. M. Collins, L. M. Daniels, C. J. Hampson, N. L. Gulay, M. S. Dyer,
+V. V. Gusev and M. J. Rosseinsky, "AriadneX: Unknown Crystalline Phase Discovery
+from Anomaly-Aware Unmixing of Powder X-Ray Diffraction Patterns", ChemRxiv (2026),
+https://doi.org/10.26434/chemrxiv.15010300/v1.
+
 ## License
 
 AriadneX is released under the [MIT License](LICENSE). The Transformer components
